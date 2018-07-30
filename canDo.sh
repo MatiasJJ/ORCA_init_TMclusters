@@ -13,7 +13,7 @@ if [ "$qt" = 'T' ]; then
 fi
 
 
-bash $base/Manage_files/import2.sh $base $qt $(cat $base/Logs/rcts.txt)       # vie tiedostot
+bash $base/Manage_files/import.sh $base $qt $(cat $base/Logs/rcts.txt)       # vie tiedostot
 
 
 
