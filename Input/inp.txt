@@ -1,0 +1,9 @@
+orca_sh.inp		 #Scriptiin luettava tiedosto
+RHF				     #method (RHF, UHF, RKS, UKS)		    @method
+def2-				   #basis (def2-QZVPP, def2-TZVPP)		@basis
+4400				   #MaxMem_perCore				            @maxMem
+96				     #coreja yht.				                @nprocs
+0				       #charge					                  @charge
+1				       #multiplicity				              @multi
+01C.xyz				 #xyzfile-name				              @xyzfile
+01C_def2-Q.inp #haluttu input-file

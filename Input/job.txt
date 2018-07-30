@@ -1,0 +1,6 @@
+sbatch_sh.job			#Scriptiin luettava tiedosto
+96				        #coreja yht				           @core
+4				          #nodeja yht				           @node
+72:00:00			    #aika hh:mm:ss				       @time
+01C_def2-Q			  #työn nimi				           @jobname
+01C_def2-Q.job		#haluttu jobfile
