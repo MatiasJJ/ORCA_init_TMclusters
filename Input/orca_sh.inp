@@ -2,7 +2,7 @@
 ! SlowConv
 ! @basis @basis/C UseSym
 ! PrintBasis
-%MaxCore @MaxCore
+%MaxCore @maxMem
 %pal nprocs @nprocs
      end
 %scf
