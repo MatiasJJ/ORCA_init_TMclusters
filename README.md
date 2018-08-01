@@ -4,8 +4,7 @@ Initialize ORCA-project with scripts
 
 Puuttuuuuuu
 
-- FromTxt -scriptit
-- submit -scriptipip
+- BSSE-fileille coordinaattien upotus-scripti
 - Output handlaus -scripti
 
 ELI tarkotus ois et noi on kans master ja sit niillä on operational apprentices
