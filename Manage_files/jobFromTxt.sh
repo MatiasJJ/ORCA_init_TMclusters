@@ -5,11 +5,11 @@ time=$4
 jobname=$5
 jobfile=$6
 
-sed -i '' s/@core/$core/g $1
-sed -i '' s/@node/$node/g $1
-sed -i '' s/@time/$time/g $1
-sed -i '' s/@jobname/$jobname/g $1
+echo "Jobfile: $6"
 
-mv ./$1 ./$6
+cp $1 $6
 
-echo "Jobfile: $1"
+sed -i '' s/@core/$core/g $6
+sed -i '' s/@node/$node/g $6
+sed -i '' s/@time/$time/g $6
+sed -i '' s/@jobname/$jobname/g $6
