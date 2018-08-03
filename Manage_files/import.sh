@@ -4,6 +4,8 @@ dir=$1              # Base
 qt=$2
 rcts=$3             # Base/Lasku
 
+coord_dir=$dir/Coord_all
+
 echo "Mikä metodi? RHF/UHF/RKS/UKS ISOLLA"
 read method                                                   # Käyttäjä määrittelee metodin
 
@@ -21,6 +23,8 @@ subdir=$(pwd)
     wrkdir=$(pwd)
     cp $dir/Input/* $wrkdir                                   # Tarvittavat input-fileet Species-kansioihin
 
+    cp $coord_dir/${i%%_*2}.xyz $wrkdir                       # Oikea koordinaatisto mukaan
+
     echo "$wrkdir/sbatch_sh.job" > $wrkdir/job.txt            # Eka jobfile ja scriptiin luettava tiedosto
     echo "96" >> $wrkdir/job.txt                              # @core
     echo "4" >> $wrkdir/job.txt                               # @node
@@ -28,7 +32,12 @@ subdir=$(pwd)
     echo "${i}-${qt}" >> $wrkdir/job.txt                      # @jobname
     echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/job.txt          # lopullinen jobfile
 
-    echo "$wrkdir/orca_sh.inp" > $wrkdir/inp.txt              # Eka input-file ja scriptiin luettava tiedosto
+    if [ $i = "${j}F2b_def2" ] || [ $i = "${j}F1b_def2" ]; then
+      echo "$wrkdir/orca_shB.inp" > $wrkdir/inp.txt              # Eka input-file ja scriptiin luettava tiedosto jos BSSE
+    else
+      echo "$wrkdir/orca_sh.inp" > $wrkdir/inp.txt              # Eka input-file ja scriptiin luettava tiedosto jos normi
+    fi
+
     echo "$method" >> $wrkdir/inp.txt                         # @method
     echo "def2-${qt}ZVPP" >> $wrkdir/inp.txt                  # @basis
     echo "4400" >> $wrkdir/inp.txt                            # @maxMem
@@ -42,16 +51,27 @@ subdir=$(pwd)
 
     echo ${i%%_*2}.xyz >> $wrkdir/inp.txt                     # @xyzfile
 
-    echo "$wrkdir/${i}-${qt}.inp" >> $wrkdir/inp.txt          # lopullinen input-file
+
+#    if [ $i = "${j}F2b_def2" ] || [ $i = "${j}F1b_def2" ]; then
+#      echo "$wrkdir/${i}-${qt}B.inp" >> $wrkdir/inp.txt          # lopullinen input-file jos BSSE
+#    else
+      echo "$wrkdir/${i}-${qt}.inp" >> $wrkdir/inp.txt          # lopullinen input-file jos normi
+#    fi
+
+
 
     echo "$wrkdir/sbatch_sh.job" > $wrkdir/job2.txt
     echo "24" >> $wrkdir/job2.txt
     echo "1" >> $wrkdir/job2.txt
     echo "24:00:00" >> $wrkdir/job2.txt
     echo "${i}-${qt}" >> $wrkdir/job2.txt
-    echo "$wrkdir/${i}-${qt}2.job" >> $wrkdir/job2.txt
+    echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/job2.txt
 
-    echo "$wrkdir/orca_sh.inp" > $wrkdir/inp2.txt
+    if [ $i = "${j}F2b_def2" ] || [ $i = "${j}F1b_def2" ]; then
+      echo "$wrkdir/orca_shB.inp" > $wrkdir/inp2.txt              # Eka input-file ja scriptiin luettava tiedosto jos BSSE
+    else
+      echo "$wrkdir/orca_sh.inp" > $wrkdir/inp2.txt              # Eka input-file ja scriptiin luettava tiedosto jos normi
+    fi
     echo "$method" >> $wrkdir/inp2.txt
     echo "def2-${qt}ZVPP" >> $wrkdir/inp2.txt
     echo "4400" >> $wrkdir/inp2.txt
@@ -65,7 +85,7 @@ subdir=$(pwd)
 
     echo ${i%%_*2}.xyz >> $wrkdir/inp2.txt
 
-    echo "$wrkdir/${i}-${qt}2.inp" >> $wrkdir/inp2.txt
+    echo "$wrkdir/${i}-${qt}.inp" >> $wrkdir/inp2.txt
 
     pwd >> $dir/Logs/Import.txt
     ls $wrkdir >> $dir/Logs/Import.txt

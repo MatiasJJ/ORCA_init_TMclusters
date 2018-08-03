@@ -18,5 +18,5 @@ bash $base/Manage_files/import.sh $base $qt $(cat $base/Logs/rcts.txt)       # v
 
 
 if [ "$qt" = 'Q' ]; then
-  echo "Oletan, että T-laskut ja kansiorakenne on jo tehty, muuten tää menee vituiks.."
+  echo "Oletan, että T-laskut ja kansiorakenne on jo tehty, muuten tää menee pipariks.."
 fi
