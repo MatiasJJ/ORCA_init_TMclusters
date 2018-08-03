@@ -32,9 +32,9 @@ subdir=$(pwd)
     grep -i 'total energy' ${wrkdir}/${i}-${qt^^}.out | awk -v ORS="," '{print $4}' >> $res_dir/Results_$rcts.txt
     grep -i 'E(CCSD)' ${wrkdir}/${i}-${qt^^}.out | awk -v ORS="," '{print $3}' >> $res_dir/Results_$rcts.txt
     grep -i 'E(CCSD(T))' ${wrkdir}/${i}-${qt^^}.out | awk -v ORS="," '{print $3}' >> $res_dir/Results_$rcts.txt
-    echo "" >> $res_dir/Results_$rcts.txt
     cd $subdir
   done
   cd ..
+  echo "" >> $res_dir/Results_$rcts.txt
   echo "________________________________________________________________________________________________________________________" >> $res_dir/Results_$rcts.txt
 done
