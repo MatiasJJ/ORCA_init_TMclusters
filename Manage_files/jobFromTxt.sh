@@ -9,7 +9,7 @@ echo "Jobfile: $6"
 
 cp $1 $6
 
-sed -i '' s/@core/$core/g $6
-sed -i '' s/@node/$node/g $6
-sed -i '' s/@time/$time/g $6
-sed -i '' s/@jobname/$jobname/g $6
+sed -i "s/@core/$core/g" $6
+sed -i "s/@node/$node/g" $6
+sed -i "s/@time/$time/g" $6
+sed -i "s/@jobname/$jobname/g" $6
