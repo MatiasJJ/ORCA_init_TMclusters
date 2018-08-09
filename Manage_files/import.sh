@@ -35,6 +35,7 @@ subdir=$(pwd)
     mkdir $wrkdir/Jobit
 
     echo "$wrkdir/sbatch_sh.job" > $wrkdir/Jobit/job.txt            # Eka jobfile ja scriptiin luettava tiedosto
+    echo "parallel" >> $wrkdir/Jobit/job.txt                        # @jono
     echo "96" >> $wrkdir/Jobit/job.txt                              # @core
     echo "4" >> $wrkdir/Jobit/job.txt                               # @node
     echo "24:00:00" >> $wrkdir/Jobit/job.txt                        # @time
@@ -64,10 +65,11 @@ subdir=$(pwd)
 
     #Pienille molekyyleille
     echo "$wrkdir/sbatch_sh.job" > $wrkdir/Jobit/job2.txt
+    echo "serial" >> $wrkdir/Jobit/job2.txt                         # @jono
     echo "1" >> $wrkdir/Jobit/job2.txt
     echo "1" >> $wrkdir/Jobit/job2.txt
     echo "8:00:00" >> $wrkdir/Jobit/job2.txt
-    echo "4000" >> $wrkdir/Jobit/job2.txt                            # @memcpu
+    echo "4000" >> $wrkdir/Jobit/job2.txt                           # @memcpu
     echo "${i}-${qt}" >> $wrkdir/Jobit/job2.txt
     echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job2.txt
 
@@ -93,6 +95,7 @@ subdir=$(pwd)
 
     #SUURILLE molekyyleille
     echo "$wrkdir/sbatch_sh.job" > $wrkdir/Jobit/job3.txt
+    echo "hugemem" >> $wrkdir/Jobit/job3.txt                          # @jono
     echo "40" >> $wrkdir/Jobit/job3.txt
     echo "1" >> $wrkdir/Jobit/job3.txt
     echo "32:00:00" >> $wrkdir/Jobit/job3.txt

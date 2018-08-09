@@ -21,7 +21,7 @@ for j in $(seq -f "%02g" 1 10); do
     cd $subdir/def2-${qt}/$i
     wrkdir=$(pwd)
     echo $wrkdir >> $logs_dir/Submit_all${qt}.txt
-    sbatch $wrkdir/${i}.job
+    #sbatch $wrkdir/${i}.job
     echo "Submitted batch job $i to Taito" >> $logs_dir/Submit_all${qt}.txt
   done
 done

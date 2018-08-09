@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-#SBATCH -p parallel			# parallel tai test
+#SBATCH -p @jono			# parallel tai test
 #SBATCH -n @core				# coret
 #SBATCH -N @node				# nodet
 #SBATCH -t @time			# time as hh:mm:ss
