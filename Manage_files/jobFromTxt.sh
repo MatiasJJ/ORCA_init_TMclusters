@@ -2,14 +2,16 @@ job=$1
 core=$2
 node=$3
 time=$4
-jobname=$5
-jobfile=$6
+memcpu=$5
+jobname=$6
+jobfile=$7
 
-echo "Jobfile: $6"
+echo "Jobfile: $7"
 
-cp $1 $6
+cp $1 $7
 
-sed -i "s/@core/$core/g" $6
-sed -i "s/@node/$node/g" $6
-sed -i "s/@time/$time/g" $6
-sed -i "s/@jobname/$jobname/g" $6
+sed -i '' "s/@core/$core/g" $7
+sed -i '' "s/@node/$node/g" $7
+sed -i '' "s/@time/$time/g" $7
+sed -i '' "s/@memcpu/$memcpu/g" $7
+sed -i '' "s/@jobname/$jobname/g" $7
