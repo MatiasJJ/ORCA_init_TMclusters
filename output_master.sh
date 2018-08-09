@@ -2,11 +2,14 @@
 
 base=$(pwd)
 
-mkdir $base/Tulokset
-echo "Kaikki tulokset löytyy kansiosta $base/Tulokset"
+rcts=$(cat $base/rcts.txt)
+rcts_dir="$base/$rcts"
+logs_dir="$base/$rcts/Logs"
+
+mkdir $rcts_dir/Tulokset
+echo "Kaikki tulokset löytyy kansiosta $rcts_dir/Tulokset"
 
 echo "Q vai T? ISOLLA"
 read qt
 
-#bash $base/Manage_files/runTime.sh $base $qt $(cat $base/Logs/rcts.txt)      # lukee kaua kesti
-bash $base/Manage_files/results.sh $base $qt $(cat $base/Logs/rcts.txt)       # kaikki Tulokset
+bash $base/Output/results.sh $base $rcts $rcts_dir $logs_dir $qt       # kaikki Tulokset
