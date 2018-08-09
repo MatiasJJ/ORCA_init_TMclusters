@@ -11,9 +11,18 @@ echo "Jobfile: $8"
 
 cp $1 $8
 
+#mac
 sed -i '' "s/@jono/$jono/g" $8
 sed -i '' "s/@core/$core/g" $8
 sed -i '' "s/@node/$node/g" $8
 sed -i '' "s/@time/$time/g" $8
 sed -i '' "s/@memcpu/$memcpu/g" $8
 sed -i '' "s/@jobname/$jobname/g" $8
+
+#linux
+sed -i "s/@jono/$jono/g" $8
+sed -i "s/@core/$core/g" $8
+sed -i "s/@node/$node/g" $8
+sed -i "s/@time/$time/g" $8
+sed -i "s/@memcpu/$memcpu/g" $8
+sed -i "s/@jobname/$jobname/g" $8
