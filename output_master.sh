@@ -13,3 +13,4 @@ echo "Q vai T? ISOLLA"
 read qt
 
 bash $base/Output/results.sh $base $rcts $rcts_dir $logs_dir $qt       # kaikki Tulokset
+bash $base/Output/jobid.sh $base $rcts $rcts_dir $logs_dir $qt       # kaikki jobIDt  
