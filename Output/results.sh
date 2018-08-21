@@ -25,7 +25,7 @@ subdir=$(pwd)
     grep -i 'total run time' ${wrkdir}/${i}-${qt}.out | awk -v ORS="," '{print $6}' >> $res_dir/$res_file
     grep -i 'total run time' ${wrkdir}/${i}-${qt}.out | awk -v ORS="," '{print $8}' >> $res_dir/$res_file
     grep -i 'total run time' ${wrkdir}/${i}-${qt}.out | awk -v ORS="," '{print $10}' >> $res_dir/$res_file
-    #    grep -i "finished by error" ${wrkdir}/${i}-${qt}.out >> $res_dir/$res_file
+    grep -i "MemNeeded" ${wrkdir}/${i}-${qt}.out >> $res_dir/$res_file
     grep "Exit code" ${wrkdir}/${i}-${qt}.out >> $res_dir/$res_file
 
     printf "$i-${qt}," >> $res_dir/$res_file
