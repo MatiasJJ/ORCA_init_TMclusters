@@ -10,6 +10,7 @@ coord_dir=$base/Coord_all
 
 if [ $qt = "T" ]; then
   echo "Mikä metodi? RHF/UHF/RKS/UKS ISOLLA"
+  echo "DFT:n perään funktionaali esim TPSSh"
   read method                                                   # Käyttäjä määrittelee metodin
   echo $method > $logs_dir/method.txt
 elif [ $qt = "Q" ]; then
