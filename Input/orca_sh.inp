@@ -1,4 +1,4 @@
-! @method DLPNO-CCSD(T) VeryTightSCF
+! @method @functional DLPNO-CCSD(T) VeryTightSCF
 ! SlowConv
 ! @basis @basis/C UseSym
 ! PrintBasis

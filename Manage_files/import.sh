@@ -10,8 +10,9 @@ coord_dir=$base/Coord_all
 
 if [ $qt = "T" ]; then
   echo "Mikä metodi? RHF/UHF/RKS/UKS ISOLLA"
-  echo "DFT:n perään funktionaali esim TPSSh"
   read method                                                   # Käyttäjä määrittelee metodin
+  echo "Mikä DFT-funktionaali? (ORCA keyword esim TPSSh)"
+  read functional
   echo $method > $logs_dir/method.txt
 elif [ $qt = "Q" ]; then
   method=$(cat $logs_dir/method.txt)
@@ -47,6 +48,7 @@ subdir=$(pwd)
 
     echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp.txt              # Eka input-file ja scriptiin luettava tiedosto
     echo "$method" >> $wrkdir/Jobit/inp.txt                         # @method
+    echo "$functional" >> $wrkdir/Jobit/inp.txt                     # @functional
     echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp.txt                  # @basis
     echo "4400" >> $wrkdir/Jobit/inp.txt                            # @maxMem
     echo "96" >> $wrkdir/Jobit/inp.txt                              # @nprocs
@@ -71,6 +73,7 @@ subdir=$(pwd)
 
     echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp2.txt             # Eka input-file ja scriptiin luettava tiedosto
     echo "$method" >> $wrkdir/Jobit/inp2.txt                        # @method
+    echo "$functional" >> $wrkdir/Jobit/inp2.txt                     # @functional
     echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp2.txt                 # @basis
     echo "3800" >> $wrkdir/Jobit/inp2.txt                           # @maxMem
     echo "1" >> $wrkdir/Jobit/inp2.txt                              # @nprocs
@@ -95,6 +98,7 @@ subdir=$(pwd)
     echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp3.txt             # Eka input-file ja scriptiin luettava tiedosto
 
     echo "$method" >> $wrkdir/Jobit/inp3.txt                        # @method
+    echo "$functional" >> $wrkdir/Jobit/inp3.txt                     # @functional
     echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp3.txt                 # @basis
     echo "7600" >> $wrkdir/Jobit/inp3.txt                           # @maxMem
     echo "16" >> $wrkdir/Jobit/inp3.txt                              # @nprocs
@@ -119,6 +123,7 @@ subdir=$(pwd)
 
     echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp4.txt             # Eka input-file ja scriptiin luettava tiedosto
     echo "$method" >> $wrkdir/Jobit/inp4.txt                        # @method
+    echo "$functional" >> $wrkdir/Jobit/inp4.txt                     # @functional
     echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp4.txt                 # @basis
     echo "9800" >> $wrkdir/Jobit/inp4.txt                           # @maxMem
     echo "48" >> $wrkdir/Jobit/inp4.txt                             # @nprocs
@@ -143,6 +148,7 @@ subdir=$(pwd)
 
     echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp5.txt             # Eka input-file ja scriptiin luettava tiedosto
     echo "$method" >> $wrkdir/Jobit/inp5.txt                        # @method
+    echo "$functional" >> $wrkdir/Jobit/inp5.txt                     # @functional
     echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp5.txt                 # @basis
     echo "36000" >> $wrkdir/Jobit/inp5.txt                          # @maxMem
     echo "40" >> $wrkdir/Jobit/inp5.txt                             # @nprocs

@@ -20,10 +20,15 @@ for j in $(seq -f "%02g" 1 10); do
   for i in ${j}{C_,F1b_,F1no_,F1o_,F2b_,F2no_,F2o_}def2; do
     cd $subdir/def2-${qt}/${i}-${qt}
     wrkdir=$(pwd)
-    while read k; do
-      echo "$k"
-    done < $(tail -n +3 $wrkdir/${i%%_*2}.xyz) >> $wrkdir/${i}-${qt}.inp
+
+    tail -n +3 $wrkdir/${i%%_*2}.xyz >> $wrkdir/${i}-${qt}.inp
     echo '*' >> $wrkdir/${i}-${qt}.inp
+
+    #while read k; do
+    #  echo "$k"
+    #done < $(tail -n +3 $wrkdir/${i%%_*2}.xyz) >> $wrkdir/${i}-${qt}.inp
+    #echo '*' >> $wrkdir/${i}-${qt}.inp
+    
     echo $wrkdir >> $logs_dir/Coord_toinp${qt}.txt
     ls $wrkdir >> $logs_dir/Coord_toinp${qt}.txt
   done
