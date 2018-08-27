@@ -23,10 +23,10 @@ sed -i '' "s/@multi/$multi/g" $9
 sed -i '' "s/@xyzfile/$xyz/g" $9
 
 #linux
-sed -i "s/@method/$method/g" $9
-sed -i "s/@basis/$basis/g" $9
-sed -i "s/@maxMem/$maxMem/g" $9
-sed -i "s/@nprocs/$procs/g" $9
-sed -i "s/@charge/$charge/g" $9
-sed -i "s/@multi/$multi/g" $9
-sed -i "s/@xyzfile/$xyz/g" $9
+#sed -i "s/@method/$method/g" $9
+#sed -i "s/@basis/$basis/g" $9
+#sed -i "s/@maxMem/$maxMem/g" $9
+#sed -i "s/@nprocs/$procs/g" $9
+#sed -i "s/@charge/$charge/g" $9
+#sed -i "s/@multi/$multi/g" $9
+#sed -i "s/@xyzfile/$xyz/g" $9

@@ -17,4 +17,4 @@ maxiter 200
 density none
 end
 
-* xyzfile @charge @multi @xyzfile
+* xyz @charge @multi

@@ -11,7 +11,7 @@ sh_dir=$base/Manage_files
 
 echo "INIT: inputs.sh"
 echo "Inputs-logi löytyy tiedostosta $logs_dir/Inputs${qt}.txt"
-echo "Pienille 'mol2'-tiedosto ja isoille 'mol3'.."
+echo "Pienille 'mol2'-tiedosto, semi-pienille 'mol3', isoille 'mol4' ja valtaville 'mol5'.."
 echo __________________________________________________________________________________________
 echo 'Input&jobfiles FromTxts' > $logs_dir/Inputs${qt}.txt
 pwd >> $logs_dir/Inputs${qt}.txt
@@ -31,6 +31,12 @@ for j in $(seq -f "%02g" 1 10); do
     elif [[ -e $wrkdir/mol3 ]]; then
       bash $sh_dir/inpFromTxt.sh $(cat $wrkdir/Jobit/inp3.txt) >> $logs_dir/Inputs${qt}.txt
       bash $sh_dir/jobFromTxt.sh $(cat $wrkdir/Jobit/job3.txt) >> $logs_dir/Inputs${qt}.txt
+    elif [[ -e $wrkdir/mol4 ]]; then
+      bash $sh_dir/inpFromTxt.sh $(cat $wrkdir/Jobit/inp4.txt) >> $logs_dir/Inputs${qt}.txt
+      bash $sh_dir/jobFromTxt.sh $(cat $wrkdir/Jobit/job4.txt) >> $logs_dir/Inputs${qt}.txt
+    elif [[ -e $wrkdir/mol5 ]]; then
+      bash $sh_dir/inpFromTxt.sh $(cat $wrkdir/Jobit/inp5.txt) >> $logs_dir/Inputs${qt}.txt
+      bash $sh_dir/jobFromTxt.sh $(cat $wrkdir/Jobit/job5.txt) >> $logs_dir/Inputs${qt}.txt
     else
     bash $sh_dir/inpFromTxt.sh $(cat $wrkdir/Jobit/inp.txt) >> $logs_dir/Inputs${qt}.txt
     bash $sh_dir/jobFromTxt.sh $(cat $wrkdir/Jobit/job.txt) >> $logs_dir/Inputs${qt}.txt

@@ -23,7 +23,7 @@ elif [ "$qt" = 'Q' ]; then
     rcts=$(cat $base/rcts.txt)
     rcts_dir="$base/$rcts"
     logs_dir="$base/$rcts/Logs"
-    bash $base/Manage_files/gbw.sh $base $rcts $rcts_dir $logs_dir          # kopsaa orbitaalit 
+    bash $base/Manage_files/gbw.sh $base $rcts $rcts_dir $logs_dir          # kopsaa orbitaalit
 fi
 echo "Kaikki logit löytyy kansiosta $logs_dir"
 
@@ -31,6 +31,6 @@ bash $base/Manage_files/import.sh $base $rcts $rcts_dir $logs_dir $qt       # vi
 
 bash $base/Manage_files/mol123.sh $base $rcts $rcts_dir $logs_dir $qt           # Valitsee pienet (mol2) ja isot (mol3)
 bash $base/Manage_files/inputs.sh $base $rcts $rcts_dir $logs_dir $qt           # tekee varsinaiset input-tiedostot
-bash $base/Manage_files/bsse_coord_toinp.sh $base $rcts $rcts_dir $logs_dir $qt           # tekee BSSE input-tiedostot
+bash $base/Manage_files/coord_toinp.sh $base $rcts $rcts_dir $logs_dir $qt      # vie koordinaatit inp-tiedostoihin
 
 tree $rcts_dir > $logs_dir/"tree_${rcts}.txt"
