@@ -35,21 +35,17 @@ subdir=$(pwd)
 
     mkdir $wrkdir/Jobit
 
+  #Normi molekyyleille
     echo "$wrkdir/sbatch_sh.job" > $wrkdir/Jobit/job.txt            # Eka jobfile ja scriptiin luettava tiedosto
     echo "parallel" >> $wrkdir/Jobit/job.txt                        # @jono
     echo "96" >> $wrkdir/Jobit/job.txt                              # @core
     echo "4" >> $wrkdir/Jobit/job.txt                               # @node
-    echo "24:00:00" >> $wrkdir/Jobit/job.txt                        # @time
+    echo "72:00:00" >> $wrkdir/Jobit/job.txt                        # @time
     echo "5200" >> $wrkdir/Jobit/job.txt                            # @memcpu
     echo "${i}-${qt}" >> $wrkdir/Jobit/job.txt                      # @jobname
     echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job.txt          # lopullinen jobfile
 
-    if [ $i = "${j}F2b_def2" ] || [ $i = "${j}F1b_def2" ]; then
-      echo "$wrkdir/orca_shB.inp" > $wrkdir/Jobit/inp.txt              # Eka input-file ja scriptiin luettava tiedosto jos BSSE
-    else
-      echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp.txt              # Eka input-file ja scriptiin luettava tiedosto jos normi
-    fi
-
+    echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp.txt              # Eka input-file ja scriptiin luettava tiedosto
     echo "$method" >> $wrkdir/Jobit/inp.txt                         # @method
     echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp.txt                  # @basis
     echo "4400" >> $wrkdir/Jobit/inp.txt                            # @maxMem
@@ -60,69 +56,104 @@ subdir=$(pwd)
       echo "1" >> $wrkdir/Jobit/inp.txt                             # @charge jos complex tai frag1
     fi
     echo "1"  >> $wrkdir/Jobit/inp.txt                              # @multi
-
     echo ${i%%_*2}.xyz >> $wrkdir/Jobit/inp.txt                     # @xyzfile
     echo "$wrkdir/${i}-${qt}.inp" >> $wrkdir/Jobit/inp.txt          # lopullinen input-file jos normi
 
-    #Pienille molekyyleille
-    echo "$wrkdir/sbatch_sh.job" > $wrkdir/Jobit/job2.txt
+  #Pienille molekyyleille
+    echo "$wrkdir/sbatch_sh.job" > $wrkdir/Jobit/job2.txt           # Eka jobfile ja scriptiin luettava tiedosto
     echo "serial" >> $wrkdir/Jobit/job2.txt                         # @jono
-    echo "1" >> $wrkdir/Jobit/job2.txt
-    echo "1" >> $wrkdir/Jobit/job2.txt
-    echo "8:00:00" >> $wrkdir/Jobit/job2.txt
+    echo "1" >> $wrkdir/Jobit/job2.txt                              # @core
+    echo "1" >> $wrkdir/Jobit/job2.txt                              # @node
+    echo "8:00:00" >> $wrkdir/Jobit/job2.txt                        # @time
     echo "4000" >> $wrkdir/Jobit/job2.txt                           # @memcpu
-    echo "${i}-${qt}" >> $wrkdir/Jobit/job2.txt
-    echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job2.txt
+    echo "${i}-${qt}" >> $wrkdir/Jobit/job2.txt                     # @jobname
+    echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job2.txt         # lopullinen jobfile
 
-    if [ $i = "${j}F2b_def2" ] || [ $i = "${j}F1b_def2" ]; then
-      echo "$wrkdir/orca_shB.inp" > $wrkdir/Jobit/inp2.txt              # Eka input-file ja scriptiin luettava tiedosto jos BSSE
-    else
-      echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp2.txt              # Eka input-file ja scriptiin luettava tiedosto jos normi
-    fi
-    echo "$method" >> $wrkdir/Jobit/inp2.txt
-    echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp2.txt
-    echo "3800" >> $wrkdir/Jobit/inp2.txt
-    echo "1" >> $wrkdir/Jobit/inp2.txt
+    echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp2.txt             # Eka input-file ja scriptiin luettava tiedosto
+    echo "$method" >> $wrkdir/Jobit/inp2.txt                        # @method
+    echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp2.txt                 # @basis
+    echo "3800" >> $wrkdir/Jobit/inp2.txt                           # @maxMem
+    echo "1" >> $wrkdir/Jobit/inp2.txt                              # @nprocs
     if [ $i = "${j}F2b_def2" ] || [ $i = "${j}F2no_def2" ] || [ $i = "${j}F2o_def2" ]; then
-      echo "0" >> $wrkdir/Jobit/inp2.txt
+      echo "0" >> $wrkdir/Jobit/inp2.txt                            # @charge jos frag2
     else
-      echo "1" >> $wrkdir/Jobit/inp2.txt
+      echo "1" >> $wrkdir/Jobit/inp2.txt                            # @charge jos complex tai frag1
     fi
-    echo "1"  >> $wrkdir/Jobit/inp2.txt
+    echo "1"  >> $wrkdir/Jobit/inp2.txt                             # @multi
+    echo ${i%%_*2}.xyz >> $wrkdir/Jobit/inp2.txt                    # @xyzfile
+    echo "$wrkdir/${i}-${qt}.inp" >> $wrkdir/Jobit/inp2.txt         # lopullinen input-file jos normi
 
-    echo ${i%%_*2}.xyz >> $wrkdir/Jobit/inp2.txt
+  #Semi-Pienille molekyyleille
+    echo "$wrkdir/sbatch_sh.job" > $wrkdir/Jobit/job3.txt           # Eka jobfile ja scriptiin luettava tiedosto
+    echo "parallel" >> $wrkdir/Jobit/job3.txt                       # @jono
+    echo "16" >> $wrkdir/Jobit/job3.txt                             # @core
+    echo "2" >> $wrkdir/Jobit/job3.txt                              # @node
+    echo "32:00:00" >> $wrkdir/Jobit/job3.txt                       # @time
+    echo "8000" >> $wrkdir/Jobit/job3.txt                           # @memcpu
+    echo "${i}-${qt}" >> $wrkdir/Jobit/job3.txt                     # @jobname
+    echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job3.txt         # lopullinen jobfile
+    echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp3.txt             # Eka input-file ja scriptiin luettava tiedosto
 
-    echo "$wrkdir/${i}-${qt}.inp" >> $wrkdir/Jobit/inp2.txt
-
-    #SUURILLE molekyyleille
-    echo "$wrkdir/sbatch_sh.job" > $wrkdir/Jobit/job3.txt
-    echo "hugemem" >> $wrkdir/Jobit/job3.txt                          # @jono
-    echo "40" >> $wrkdir/Jobit/job3.txt
-    echo "1" >> $wrkdir/Jobit/job3.txt
-    echo "32:00:00" >> $wrkdir/Jobit/job3.txt
-    echo "37000" >> $wrkdir/Jobit/job3.txt                            # @memcpu
-    echo "${i}-${qt}" >> $wrkdir/Jobit/job3.txt
-    echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job3.txt
-
-    if [ $i = "${j}F2b_def2" ] || [ $i = "${j}F1b_def2" ]; then
-      echo "$wrkdir/orca_shB.inp" > $wrkdir/Jobit/inp3.txt              # Eka input-file ja scriptiin luettava tiedosto jos BSSE
-    else
-      echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp3.txt              # Eka input-file ja scriptiin luettava tiedosto jos normi
-    fi
-    echo "$method" >> $wrkdir/Jobit/inp3.txt
-    echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp3.txt
-    echo "36000" >> $wrkdir/Jobit/inp3.txt
-    echo "40" >> $wrkdir/Jobit/inp3.txt
+    echo "$method" >> $wrkdir/Jobit/inp3.txt                        # @method
+    echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp3.txt                 # @basis
+    echo "7600" >> $wrkdir/Jobit/inp3.txt                           # @maxMem
+    echo "16" >> $wrkdir/Jobit/inp3.txt                              # @nprocs
     if [ $i = "${j}F2b_def2" ] || [ $i = "${j}F2no_def2" ] || [ $i = "${j}F2o_def2" ]; then
-      echo "0" >> $wrkdir/Jobit/inp3.txt
+      echo "0" >> $wrkdir/Jobit/inp3.txt                            # @charge jos frag2
     else
-      echo "1" >> $wrkdir/Jobit/inp3.txt
+      echo "1" >> $wrkdir/Jobit/inp3.txt                            # @charge jos complex tai frag1
     fi
-    echo "1"  >> $wrkdir/Jobit/inp3.txt
+    echo "1"  >> $wrkdir/Jobit/inp3.txt                             # @multi
+    echo ${i%%_*2}.xyz >> $wrkdir/Jobit/inp3.txt                    # @xyzfile
+    echo "$wrkdir/${i}-${qt}.inp" >> $wrkdir/Jobit/inp3.txt         # lopullinen input-file jos normi
 
-    echo ${i%%_*2}.xyz >> $wrkdir/Jobit/inp3.txt
+  #Bigmem molekyyleille
+    echo "$wrkdir/sbatch_sh.job" > $wrkdir/Jobit/job4.txt           # Eka jobfile ja scriptiin luettava tiedosto
+    echo "parallel" >> $wrkdir/Jobit/job4.txt                       # @jono
+    echo "48" >> $wrkdir/Jobit/job4.txt                             # @core
+    echo "4" >> $wrkdir/Jobit/job4.txt                              # @node
+    echo "72:00:00" >> $wrkdir/Jobit/job4.txt                       # @time
+    echo "10400" >> $wrkdir/Jobit/job4.txt                          # @memcpu
+    echo "${i}-${qt}" >> $wrkdir/Jobit/job4.txt                     # @jobname
+    echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job4.txt         # lopullinen jobfile
 
-    echo "$wrkdir/${i}-${qt}.inp" >> $wrkdir/Jobit/inp3.txt
+    echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp4.txt             # Eka input-file ja scriptiin luettava tiedosto
+    echo "$method" >> $wrkdir/Jobit/inp4.txt                        # @method
+    echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp4.txt                 # @basis
+    echo "9800" >> $wrkdir/Jobit/inp4.txt                           # @maxMem
+    echo "48" >> $wrkdir/Jobit/inp4.txt                             # @nprocs
+    if [ $i = "${j}F2b_def2" ] || [ $i = "${j}F2no_def2" ] || [ $i = "${j}F2o_def2" ]; then
+      echo "0" >> $wrkdir/Jobit/inp4.txt                            # @charge jos frag2
+    else
+      echo "1" >> $wrkdir/Jobit/inp4.txt                            # @charge jos complex tai frag1
+    fi
+    echo "1"  >> $wrkdir/Jobit/inp4.txt                             # @multi
+    echo ${i%%_*2}.xyz >> $wrkdir/Jobit/inp4.txt                    # @xyzfile
+    echo "$wrkdir/${i}-${qt}.inp" >> $wrkdir/Jobit/inp4.txt         # lopullinen input-file jos normi
+
+  #SUURILLE molekyyleille
+    echo "$wrkdir/sbatch_sh.job" > $wrkdir/Jobit/job5.txt           # Eka jobfile ja scriptiin luettava tiedosto
+    echo "hugemem" >> $wrkdir/Jobit/job5.txt                        # @jono
+    echo "40" >> $wrkdir/Jobit/job5.txt                             # @core
+    echo "1" >> $wrkdir/Jobit/job5.txt                              # @node
+    echo "32:00:00" >> $wrkdir/Jobit/job5.txt                       # @time
+    echo "37000" >> $wrkdir/Jobit/job5.txt                          # @memcpu
+    echo "${i}-${qt}" >> $wrkdir/Jobit/job5.txt                     # @jobname
+    echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job5.txt         # lopullinen jobfile
+
+    echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp5.txt             # Eka input-file ja scriptiin luettava tiedosto
+    echo "$method" >> $wrkdir/Jobit/inp5.txt                        # @method
+    echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp5.txt                 # @basis
+    echo "36000" >> $wrkdir/Jobit/inp5.txt                          # @maxMem
+    echo "40" >> $wrkdir/Jobit/inp5.txt                             # @nprocs
+    if [ $i = "${j}F2b_def2" ] || [ $i = "${j}F2no_def2" ] || [ $i = "${j}F2o_def2" ]; then
+      echo "0" >> $wrkdir/Jobit/inp5.txt                            # @charge jos frag2
+    else
+      echo "1" >> $wrkdir/Jobit/inp5.txt                            # @charge jos complex tai frag1
+    fi
+    echo "1"  >> $wrkdir/Jobit/inp5.txt                             # @multi
+    echo ${i%%_*2}.xyz >> $wrkdir/Jobit/inp5.txt                    # @xyzfile
+    echo "$wrkdir/${i}-${qt}.inp" >> $wrkdir/Jobit/inp5.txt         # lopullinen input-file jos normi
 
 
     pwd >> $logs_dir/Import${qt}.txt
