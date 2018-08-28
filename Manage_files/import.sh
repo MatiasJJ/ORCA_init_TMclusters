@@ -13,7 +13,7 @@ if [ $qt = "T" ]; then
   read method                                                   # Käyttäjä määrittelee metodin
   echo $method > $logs_dir/method.txt
   if [ $method = "RKS" ] || [ $method = "UKS" ]; then
-    echo "Mikä DFT-funktionaali? (ORCA keyword esim TPSSh)"
+    echo "Mikä DFT-funktionaali? (ORCA keyword esim TPSSh tai wB97X-D3)"
     read functional
     echo $functional > $logs_dir/functional.txt
   fi
