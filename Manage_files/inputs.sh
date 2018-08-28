@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 base=$1               # Base
@@ -26,19 +25,19 @@ for j in $(seq -f "%02g" 1 10); do
     cd $subdir/def2-${qt}/${i}
     wrkdir=$(pwd)
     if [[ -e $wrkdir/mol2 ]]; then
-      bash $sh_dir/inpFromTxt.sh $(cat $wrkdir/Jobit/inp2.txt) >> $logs_dir/Inputs${qt}.txt
+      bash $sh_dir/inpFromTxt.sh $(cat $wrkdir/Jobit/inp2.txt) $logs_dir >> $logs_dir/Inputs${qt}.txt
       bash $sh_dir/jobFromTxt.sh $(cat $wrkdir/Jobit/job2.txt) >> $logs_dir/Inputs${qt}.txt
     elif [[ -e $wrkdir/mol3 ]]; then
-      bash $sh_dir/inpFromTxt.sh $(cat $wrkdir/Jobit/inp3.txt) >> $logs_dir/Inputs${qt}.txt
+      bash $sh_dir/inpFromTxt.sh $(cat $wrkdir/Jobit/inp3.txt) $logs_dir >> $logs_dir/Inputs${qt}.txt
       bash $sh_dir/jobFromTxt.sh $(cat $wrkdir/Jobit/job3.txt) >> $logs_dir/Inputs${qt}.txt
     elif [[ -e $wrkdir/mol4 ]]; then
-      bash $sh_dir/inpFromTxt.sh $(cat $wrkdir/Jobit/inp4.txt) >> $logs_dir/Inputs${qt}.txt
+      bash $sh_dir/inpFromTxt.sh $(cat $wrkdir/Jobit/inp4.txt) $logs_dir >> $logs_dir/Inputs${qt}.txt
       bash $sh_dir/jobFromTxt.sh $(cat $wrkdir/Jobit/job4.txt) >> $logs_dir/Inputs${qt}.txt
     elif [[ -e $wrkdir/mol5 ]]; then
-      bash $sh_dir/inpFromTxt.sh $(cat $wrkdir/Jobit/inp5.txt) >> $logs_dir/Inputs${qt}.txt
+      bash $sh_dir/inpFromTxt.sh $(cat $wrkdir/Jobit/inp5.txt) $logs_dir >> $logs_dir/Inputs${qt}.txt
       bash $sh_dir/jobFromTxt.sh $(cat $wrkdir/Jobit/job5.txt) >> $logs_dir/Inputs${qt}.txt
     else
-    bash $sh_dir/inpFromTxt.sh $(cat $wrkdir/Jobit/inp.txt) >> $logs_dir/Inputs${qt}.txt
+    bash $sh_dir/inpFromTxt.sh $(cat $wrkdir/Jobit/inp.txt) $logs_dir >> $logs_dir/Inputs${qt}.txt
     bash $sh_dir/jobFromTxt.sh $(cat $wrkdir/Jobit/job.txt) >> $logs_dir/Inputs${qt}.txt
     fi
     echo $wrkdir >> $logs_dir/Inputs${qt}.txt
