@@ -49,7 +49,7 @@ subdir=$(pwd)
     echo "4" >> $wrkdir/Jobit/job.txt                               # @node
     echo "72:00:00" >> $wrkdir/Jobit/job.txt                        # @time
     echo "5200" >> $wrkdir/Jobit/job.txt                            # @memcpu
-    echo "${method}_${i}-${qt}" >> $wrkdir/Jobit/job.txt                      # @jobname
+    echo "${i}-${qt}" >> $wrkdir/Jobit/job.txt                      # @jobname
     echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job.txt          # lopullinen jobfile
 
     if [[ -e $logs_dir/functional.txt ]]; then
@@ -77,7 +77,7 @@ subdir=$(pwd)
     echo "1" >> $wrkdir/Jobit/job2.txt                              # @node
     echo "8:00:00" >> $wrkdir/Jobit/job2.txt                        # @time
     echo "4000" >> $wrkdir/Jobit/job2.txt                           # @memcpu
-    echo "${method}_${i}-${qt}" >> $wrkdir/Jobit/job2.txt                     # @jobname
+    echo "${i}-${qt}" >> $wrkdir/Jobit/job2.txt                     # @jobname
     echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job2.txt         # lopullinen jobfile
 
     if [[ -e $logs_dir/functional.txt ]]; then
@@ -105,7 +105,7 @@ subdir=$(pwd)
     echo "2" >> $wrkdir/Jobit/job3.txt                              # @node
     echo "32:00:00" >> $wrkdir/Jobit/job3.txt                       # @time
     echo "8000" >> $wrkdir/Jobit/job3.txt                           # @memcpu
-    echo "${method}_${i}-${qt}" >> $wrkdir/Jobit/job3.txt                     # @jobname
+    echo "${i}-${qt}" >> $wrkdir/Jobit/job3.txt                     # @jobname
     echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job3.txt         # lopullinen jobfile
 
     if [[ -e $logs_dir/functional.txt ]]; then
@@ -133,7 +133,7 @@ subdir=$(pwd)
     echo "4" >> $wrkdir/Jobit/job4.txt                              # @node
     echo "72:00:00" >> $wrkdir/Jobit/job4.txt                       # @time
     echo "10400" >> $wrkdir/Jobit/job4.txt                          # @memcpu
-    echo "${method}_${i}-${qt}" >> $wrkdir/Jobit/job4.txt                     # @jobname
+    echo "${i}-${qt}" >> $wrkdir/Jobit/job4.txt                     # @jobname
     echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job4.txt         # lopullinen jobfile
 
     if [[ -e $logs_dir/functional.txt ]]; then
@@ -161,7 +161,7 @@ subdir=$(pwd)
     echo "1" >> $wrkdir/Jobit/job5.txt                              # @node
     echo "32:00:00" >> $wrkdir/Jobit/job5.txt                       # @time
     echo "37000" >> $wrkdir/Jobit/job5.txt                          # @memcpu
-    echo "${method}_${i}-${qt}" >> $wrkdir/Jobit/job5.txt                     # @jobname
+    echo "${i}-${qt}" >> $wrkdir/Jobit/job5.txt                     # @jobname
     echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job5.txt         # lopullinen jobfile
 
     if [[ -e $logs_dir/functional.txt ]]; then
