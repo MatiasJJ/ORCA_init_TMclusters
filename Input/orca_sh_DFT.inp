@@ -1,0 +1,21 @@
+! @method @functional DLPNO-CCSD(T) VeryTightSCF
+! SlowConv
+! @basis @basis/C UseSym
+! PrintBasis
+%MaxCore @maxMem
+%pal nprocs @nprocs
+     end
+%scf
+  DampFac  0.7
+  DampErr  0.0001
+  LShift   0.2
+  ShiftErr 0.0001
+  MaxIter  500
+  SOSCFStart 0.00033        # Default value of orbital gradient is 0.0033
+end
+%mdci
+maxiter 200
+density none
+end
+
+* xyz @charge @multi

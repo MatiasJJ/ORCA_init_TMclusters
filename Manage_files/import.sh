@@ -11,11 +11,17 @@ coord_dir=$base/Coord_all
 if [ $qt = "T" ]; then
   echo "Mikä metodi? RHF/UHF/RKS/UKS ISOLLA"
   read method                                                   # Käyttäjä määrittelee metodin
-  echo "Mikä DFT-funktionaali? (ORCA keyword esim TPSSh)"
-  read functional
   echo $method > $logs_dir/method.txt
+  if [ $method = "RKS" ] || [ $method = "UKS" ]; then
+    echo "Mikä DFT-funktionaali? (ORCA keyword esim TPSSh)"
+    read functional
+    echo $functional > $logs_dir/functional.txt
+  fi
 elif [ $qt = "Q" ]; then
   method=$(cat $logs_dir/method.txt)
+  if [[ -e $logs_dir/functional.txt  ]]; then
+    functional=$(cat $logs_dir/functional.txt)
+  fi
 fi
 
 echo "INIT: import.sh"                                        # nii että mitä ollaa tekemäässä
@@ -43,12 +49,15 @@ subdir=$(pwd)
     echo "4" >> $wrkdir/Jobit/job.txt                               # @node
     echo "72:00:00" >> $wrkdir/Jobit/job.txt                        # @time
     echo "5200" >> $wrkdir/Jobit/job.txt                            # @memcpu
-    echo "${i}-${qt}" >> $wrkdir/Jobit/job.txt                      # @jobname
+    echo "${method}_${i}-${qt}" >> $wrkdir/Jobit/job.txt                      # @jobname
     echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job.txt          # lopullinen jobfile
 
-    echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp.txt              # Eka input-file ja scriptiin luettava tiedosto
+    if [[ -e $logs_dir/functional.txt ]]; then
+      echo "$wrkdir/orca_sh_DFT.inp" > $wrkdir/Jobit/inp.txt        # Eka input-file ja scriptiin luettava tiedosto jos DFT
+    else
+      echo "$wrkdir/orca_sh_HF.inp" > $wrkdir/Jobit/inp.txt            # Eka input-file ja scriptiin luettava tiedosto jo HF
+    fi
     echo "$method" >> $wrkdir/Jobit/inp.txt                         # @method
-    echo "$functional" >> $wrkdir/Jobit/inp.txt                     # @functional
     echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp.txt                  # @basis
     echo "4400" >> $wrkdir/Jobit/inp.txt                            # @maxMem
     echo "96" >> $wrkdir/Jobit/inp.txt                              # @nprocs
@@ -68,12 +77,15 @@ subdir=$(pwd)
     echo "1" >> $wrkdir/Jobit/job2.txt                              # @node
     echo "8:00:00" >> $wrkdir/Jobit/job2.txt                        # @time
     echo "4000" >> $wrkdir/Jobit/job2.txt                           # @memcpu
-    echo "${i}-${qt}" >> $wrkdir/Jobit/job2.txt                     # @jobname
+    echo "${method}_${i}-${qt}" >> $wrkdir/Jobit/job2.txt                     # @jobname
     echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job2.txt         # lopullinen jobfile
 
-    echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp2.txt             # Eka input-file ja scriptiin luettava tiedosto
-    echo "$method" >> $wrkdir/Jobit/inp2.txt                        # @method
-    echo "$functional" >> $wrkdir/Jobit/inp2.txt                     # @functional
+    if [[ -e $logs_dir/functional.txt ]]; then
+      echo "$wrkdir/orca_sh_DFT.inp" > $wrkdir/Jobit/inp2.txt        # Eka input-file ja scriptiin luettava tiedosto jos DFT
+    else
+      echo "$wrkdir/orca_sh_HF.inp" > $wrkdir/Jobit/inp2.txt            # Eka input-file ja scriptiin luettava tiedosto jo HF
+    fi
+    echo "$method" >> $wrkdir/Jobit/inp2.txt                         # @method
     echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp2.txt                 # @basis
     echo "3800" >> $wrkdir/Jobit/inp2.txt                           # @maxMem
     echo "1" >> $wrkdir/Jobit/inp2.txt                              # @nprocs
@@ -93,12 +105,15 @@ subdir=$(pwd)
     echo "2" >> $wrkdir/Jobit/job3.txt                              # @node
     echo "32:00:00" >> $wrkdir/Jobit/job3.txt                       # @time
     echo "8000" >> $wrkdir/Jobit/job3.txt                           # @memcpu
-    echo "${i}-${qt}" >> $wrkdir/Jobit/job3.txt                     # @jobname
+    echo "${method}_${i}-${qt}" >> $wrkdir/Jobit/job3.txt                     # @jobname
     echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job3.txt         # lopullinen jobfile
-    echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp3.txt             # Eka input-file ja scriptiin luettava tiedosto
 
-    echo "$method" >> $wrkdir/Jobit/inp3.txt                        # @method
-    echo "$functional" >> $wrkdir/Jobit/inp3.txt                     # @functional
+    if [[ -e $logs_dir/functional.txt ]]; then
+      echo "$wrkdir/orca_sh_DFT.inp" > $wrkdir/Jobit/inp3.txt        # Eka input-file ja scriptiin luettava tiedosto jos DFT
+    else
+      echo "$wrkdir/orca_sh_HF.inp" > $wrkdir/Jobit/inp3.txt            # Eka input-file ja scriptiin luettava tiedosto jo HF
+    fi
+    echo "$method" >> $wrkdir/Jobit/inp3.txt                         # @method
     echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp3.txt                 # @basis
     echo "7600" >> $wrkdir/Jobit/inp3.txt                           # @maxMem
     echo "16" >> $wrkdir/Jobit/inp3.txt                              # @nprocs
@@ -118,12 +133,15 @@ subdir=$(pwd)
     echo "4" >> $wrkdir/Jobit/job4.txt                              # @node
     echo "72:00:00" >> $wrkdir/Jobit/job4.txt                       # @time
     echo "10400" >> $wrkdir/Jobit/job4.txt                          # @memcpu
-    echo "${i}-${qt}" >> $wrkdir/Jobit/job4.txt                     # @jobname
+    echo "${method}_${i}-${qt}" >> $wrkdir/Jobit/job4.txt                     # @jobname
     echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job4.txt         # lopullinen jobfile
 
-    echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp4.txt             # Eka input-file ja scriptiin luettava tiedosto
-    echo "$method" >> $wrkdir/Jobit/inp4.txt                        # @method
-    echo "$functional" >> $wrkdir/Jobit/inp4.txt                     # @functional
+    if [[ -e $logs_dir/functional.txt ]]; then
+      echo "$wrkdir/orca_sh_DFT.inp" > $wrkdir/Jobit/inp4.txt        # Eka input-file ja scriptiin luettava tiedosto jos DFT
+    else
+      echo "$wrkdir/orca_sh_HF.inp" > $wrkdir/Jobit/inp4.txt            # Eka input-file ja scriptiin luettava tiedosto jo HF
+    fi
+    echo "$method" >> $wrkdir/Jobit/inp4.txt                         # @method
     echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp4.txt                 # @basis
     echo "9800" >> $wrkdir/Jobit/inp4.txt                           # @maxMem
     echo "48" >> $wrkdir/Jobit/inp4.txt                             # @nprocs
@@ -143,12 +161,15 @@ subdir=$(pwd)
     echo "1" >> $wrkdir/Jobit/job5.txt                              # @node
     echo "32:00:00" >> $wrkdir/Jobit/job5.txt                       # @time
     echo "37000" >> $wrkdir/Jobit/job5.txt                          # @memcpu
-    echo "${i}-${qt}" >> $wrkdir/Jobit/job5.txt                     # @jobname
+    echo "${method}_${i}-${qt}" >> $wrkdir/Jobit/job5.txt                     # @jobname
     echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job5.txt         # lopullinen jobfile
 
-    echo "$wrkdir/orca_sh.inp" > $wrkdir/Jobit/inp5.txt             # Eka input-file ja scriptiin luettava tiedosto
-    echo "$method" >> $wrkdir/Jobit/inp5.txt                        # @method
-    echo "$functional" >> $wrkdir/Jobit/inp5.txt                     # @functional
+    if [[ -e $logs_dir/functional.txt ]]; then
+      echo "$wrkdir/orca_sh_DFT.inp" > $wrkdir/Jobit/inp5.txt        # Eka input-file ja scriptiin luettava tiedosto jos DFT
+    else
+      echo "$wrkdir/orca_sh_HF.inp" > $wrkdir/Jobit/inp5.txt            # Eka input-file ja scriptiin luettava tiedosto jo HF
+    fi
+    echo "$method" >> $wrkdir/Jobit/inp5.txt                         # @method
     echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp5.txt                 # @basis
     echo "36000" >> $wrkdir/Jobit/inp5.txt                          # @maxMem
     echo "40" >> $wrkdir/Jobit/inp5.txt                             # @nprocs
