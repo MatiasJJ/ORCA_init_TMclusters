@@ -159,7 +159,7 @@ subdir=$(pwd)
     echo "hugemem" >> $wrkdir/Jobit/job5.txt                        # @jono
     echo "40" >> $wrkdir/Jobit/job5.txt                             # @core
     echo "1" >> $wrkdir/Jobit/job5.txt                              # @node
-    echo "32:00:00" >> $wrkdir/Jobit/job5.txt                       # @time
+    echo "7-00:00:00" >> $wrkdir/Jobit/job5.txt                       # @time
     echo "37000" >> $wrkdir/Jobit/job5.txt                          # @memcpu
     echo "${i}-${qt}" >> $wrkdir/Jobit/job5.txt                     # @jobname
     echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job5.txt         # lopullinen jobfile
