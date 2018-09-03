@@ -4,6 +4,9 @@ Initialize ORCA-project with scripts
 
 Puuttuuuuuu
 
+- Output-scripti:
+  - jos muisti on loppunu kesken nii ei sitä tartte ilmottaa siinä mahollisten tulosten puoolivälissä ku vaikka jälkee tai loppuun ja vaikka jollai hienolla merkinnällä ja mielellää vielä samalla rivillä.. LOL
+
 - xyz-filen käsittely:
   - hakee vain olennaisen eli koordinaatit ja lisää ne inp-tiedostoon
   - hakee wc -l rivien määrän ja siitä atomien määrän 
