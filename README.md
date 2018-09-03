@@ -9,7 +9,8 @@ Puuttuuuuuu
   - hakee wc -l rivien määrän ja siitä atomien määrän 
     - käyttää automaattista resurssienjakoa atomien määrän perusteella
 
-
+- ne inp ja job txt:t vois vaa olla olemassa as such eikä tarttis scriptillä luoda joka kerta
+  - säästyis tilaa import-scriptistä
 
 
 MUUTOKSET vanhasta versiosta (A_New_Era)
