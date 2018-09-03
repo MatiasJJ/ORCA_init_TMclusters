@@ -155,7 +155,7 @@ subdir=$(pwd)
     echo "$wrkdir/${i}-${qt}.inp" >> $wrkdir/Jobit/inp4.txt         # lopullinen input-file jos normi
 
   #SUURILLE molekyyleille
-    echo "$wrkdir/sbatch_sh.job" > $wrkdir/Jobit/job5.txt           # Eka jobfile ja scriptiin luettava tiedosto
+    echo "$wrkdir/sbatch_huge_sh.job" > $wrkdir/Jobit/job5.txt           # Eka jobfile ja scriptiin luettava tiedosto
     echo "hugemem" >> $wrkdir/Jobit/job5.txt                        # @jono
     echo "40" >> $wrkdir/Jobit/job5.txt                             # @core
     echo "1" >> $wrkdir/Jobit/job5.txt                              # @node
