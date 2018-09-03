@@ -17,10 +17,20 @@ echo "The job ID assigned by the Batch system is: $SLURM_JOBID"
 echo "Number of requested processes $SLURM_NPROCS"
 echo "Did you include %pal nprocs $SLURM_NPROCS end in your input?"
 
+echo "Node(s) allocated:"
 scontrol show jobs $SLURM_JOB_ID | grep " NodeList" | cut -c 13-
 
 export ORCATMPDIR=/tmp/$USER/$SLURM_JOB_ID
 mkdir -p $ORCATMPDIR
 
 module load orca-env/4.0.1.2
-$USERAPPL/orca_4_0_1_2_linux_x86-64_openmpi202/orca @jobname.inp > @jobname.out
+
+cp * $ORCATMPDIR
+cd $ORCATMPDIR
+rm *.err *.out
+
+$USERAPPL/orca_4_0_1_2_linux_x86-64_openmpi202/orca @jobname.inp > $SDIR/@jobname.out
+
+cp * $SDIR
+cd $SDIR
+rm -rf $ORCATMPDIR
