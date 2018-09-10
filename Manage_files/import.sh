@@ -73,9 +73,9 @@ subdir=$(pwd)
   #Pienille molekyyleille
     echo "$wrkdir/sbatch_sh.job" > $wrkdir/Jobit/job2.txt           # Eka jobfile ja scriptiin luettava tiedosto
     echo "serial" >> $wrkdir/Jobit/job2.txt                         # @jono
-    echo "1" >> $wrkdir/Jobit/job2.txt                              # @core
+    echo "2" >> $wrkdir/Jobit/job2.txt                              # @core
     echo "1" >> $wrkdir/Jobit/job2.txt                              # @node
-    echo "8:00:00" >> $wrkdir/Jobit/job2.txt                        # @time
+    echo 32:00:00" >> $wrkdir/Jobit/job2.txt                        # @time
     echo "4000" >> $wrkdir/Jobit/job2.txt                           # @memcpu
     echo "${i}-${qt}" >> $wrkdir/Jobit/job2.txt                     # @jobname
     echo "$wrkdir/${i}-${qt}.job" >> $wrkdir/Jobit/job2.txt         # lopullinen jobfile
