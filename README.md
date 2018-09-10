@@ -4,11 +4,13 @@ Initialize ORCA-project with scripts
 
 Puuttuuuuuu
 
+- kysyy basis setin ja käyttää sitä olennaisin osin tiedostojen nimeämiseen.. :O
+
 - Output-scripti:
   - jos muisti on loppunu kesken nii ei sitä tartte ilmottaa siinä mahollisten tulosten puoolivälissä ku vaikka jälkee tai loppuun ja vaikka jollai hienolla merkinnällä ja mielellää vielä samalla rivillä.. LOL
 
 - xyz-filen käsittely:
-  - hakee vain olennaisen eli koordinaatit ja lisää ne inp-tiedostoon
+  - hakee vain olennaisen eli koordinaatit ja lisää ne inp-tiedostoon   DONE?
   - hakee wc -l rivien määrän ja siitä atomien määrän 
     - käyttää automaattista resurssienjakoa atomien määrän perusteella
 
