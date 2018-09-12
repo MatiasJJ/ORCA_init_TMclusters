@@ -88,7 +88,7 @@ subdir=$(pwd)
     echo "$method" >> $wrkdir/Jobit/inp2.txt                         # @method
     echo "def2-${qt}ZVPP" >> $wrkdir/Jobit/inp2.txt                 # @basis
     echo "3800" >> $wrkdir/Jobit/inp2.txt                           # @maxMem
-    echo "1" >> $wrkdir/Jobit/inp2.txt                              # @nprocs
+    echo "2" >> $wrkdir/Jobit/inp2.txt                              # @nprocs
     if [ $i = "${j}F2b_def2" ] || [ $i = "${j}F2no_def2" ] || [ $i = "${j}F2o_def2" ]; then
       echo "0" >> $wrkdir/Jobit/inp2.txt                            # @charge jos frag2
     else
