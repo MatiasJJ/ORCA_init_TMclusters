@@ -34,4 +34,4 @@ for j in $(seq -f "%02g" 1 10); do
   done
 done
 
-echo "Nyt pitäs olla BSSE inputit kunnossa :O " >> $logs_dir/Coord_toinp${qt}.txt
+echo "Nyt pitäs olla koordinaatit inputeissa :O " >> $logs_dir/Coord_toinp${qt}.txt
